@@ -92,32 +92,33 @@ public:
     
         Node* temp = head;  // temp value set to head to navigate to position
     
-        for (int i = 1; i < pos; i++){
-            if (!temp) {
+        for (int i = 1; i < pos; i++){ // iterates through list, checking for insufficient sized list
+            if (!temp) {    // runs when list is too small, displays error and closes function
                 cout << "Position doesn't exist." << endl;
                 return;
             }
             else
                 temp = temp->next;
         }
-        if (!temp) {
+        if (!temp) {    // runs when list is too small, displays error and closes function. checked again to cover the loop's blind spot
             cout << "Position doesn't exist." << endl;
             return;
         }
     
-        if (!temp->next) {
+        if (!temp->next) {  // check for tail node. if so, uses pop_back() for simplicity
             pop_back();
             return;
         }
-    
+        
+        // sets pointers to eventually delete temp
         Node* tempPrev = temp->prev;
         tempPrev->next = temp->next;
         temp->next->prev = tempPrev;
-        delete temp;
+        delete temp;    // memory clear
     }
 
-    void push_back(int v) {
-        Node* newNode = new Node(v);
+    void push_back(int v) { // adds node to tail, with given (int) value
+        Node* newNode = new Node(v);    // new node to insert is created
         if (!tail)
             head = tail = newNode;
         else {
