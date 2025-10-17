@@ -25,35 +25,35 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }  // empty list created
 
-    void insert_after(int value, int position) {
-        if (position < 0) {
+    void insert_after(int value, int position) {    // inserts a node in a certain postition, with given (int) value and (int) position
+        if (position < 0) { // checks for position validation if under 0
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(value);
-        if (!head) {
+        Node* newNode = new Node(value);    // new node to insert is created
+        if (!head) {    // checks for empty list. if so, newNode is both head and tail due to being the only object in list
             head = tail = newNode;
             return;
         }
 
-        Node* temp = head;
+        Node* temp = head;  // temp value set to head to navigate to position
         for (int i = 0; i < position && temp; ++i)
-            temp = temp->next;
+            temp = temp->next;  // temp is iterated until it reaches the correct position
 
-        if (!temp) {
+        if (!temp) {    // runs when position is not found within list, closes function
             cout << "Position exceeds list size. Node not inserted.\n";
             delete newNode;
             return;
         }
 
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
+        newNode->next = temp->next; // newNode next node is set to temp's next
+        newNode->prev = temp;   // newNode prev node is set to temp
+        if (temp->next) // checks if temp is not last node
+            temp->next->prev = newNode; // change next node's prev node to newNode
         else
-            tail = newNode;
-        temp->next = newNode;
+            tail = newNode; // set tail if it is the last node
+        temp->next = newNode;   // temp next is set to newNode
     }
 
     void delete_val(int value) {
