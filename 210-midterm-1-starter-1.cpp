@@ -119,29 +119,29 @@ public:
 
     void push_back(int v) { // adds node to tail, with given (int) value
         Node* newNode = new Node(v);    // new node to insert is created
-        if (!tail)
-            head = tail = newNode;
+        if (!tail)  // check if list is empty
+            head = tail = newNode;  // add newNode as only value
         else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
+            tail->next = newNode;   // set current tail to newNode
+            newNode->prev = tail;   // set newNode prev to previous tail
+            tail = newNode; // set tail
         }
     }
     
     void push_front(int v) {
-        Node* newNode = new Node(v);
-        if (!head)
-            head = tail = newNode;
+        Node* newNode = new Node(v);    // new node to insert is created
+        if (!head)  // check if list is empty
+            head = tail = newNode;  // add newNode as only value
         else {
-            newNode->next = head;
-            head->prev = newNode;
-            head = newNode;
+            newNode->next = head;   // set current head to newNode
+            head->prev = newNode;   // set newNode prev to previous head
+            head = newNode; // set head
         }
     }
     
-    void pop_front() {
+    void pop_front() {  // deletes head node from list
 
-        if (!head) {
+        if (!head) {    // checks for empty list. if so, displays error and function is cancelled
             cout << "List is empty." << endl;
             return;
         }
@@ -157,8 +157,8 @@ public:
         delete temp;
     }
 
-    void pop_back() {
-        if (!tail) {
+    void pop_back() {   // deletes tail node from list
+        if (!tail) {    // checks for empty list. if so, displays error and function is cancelled
             cout << "List is empty." << endl;
             return;
         }
@@ -173,34 +173,34 @@ public:
         delete temp;
     }
 
-    ~DoublyLinkedList() {
-        while (head) {
+    ~DoublyLinkedList() {   // deconstructor: deletes all nodes
+        while (head) {  // iterates through list
             Node* temp = head;
             head = head->next;
             delete temp;
         }
     }
-    void print() {
-        Node* current = head;
-        if (!current) {
+    void print() {  // display list from first to last node
+        Node* current = head;   // temp value set to head to navigate list
+        if (!current) { // check id list is empty, display error and close function
             cout << "List is empty." << endl;
             return;
         }
-        while (current) {
-            cout << current->data << " ";
+        while (current) {   // iterates through list
+            cout << current->data << " ";   // print node
             current = current->next;
         }
         cout << endl;
     }
 
-    void print_reverse() {
-        Node* current = tail;
-        if (!current) { 
+    void print_reverse() {  // display list from last to first node
+        Node* current = tail;   // temp value set to head to navigate list
+        if (!current) { // check id list is empty, display error and close function
             cout << "List is empty." << endl;
             return;
         }
-        while (current) {
-            cout << current->data << " ";
+        while (current) {   // iterates through list
+            cout << current->data << " ";   // print node
             current = current->prev;
         }
         cout << endl;
