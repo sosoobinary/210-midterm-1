@@ -211,6 +211,7 @@ public:
         bool other = false;
 
         while(current) {
+            if(!other) { cout << current->data << " ";}
             current = current->next;
             other = !other;
         }
@@ -221,6 +222,24 @@ public:
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
+    DoublyLinkedList list;
+
+    list.push_back(1);
+    list.push_back(3);
+    list.push_back(5);
+    list.push_back(7);
+    list.push_back(9);
+    list.push_back(11);
+    list.push_back(13);
+    list.push_back(15);
+    list.push_back(17);
+    list.push_back(19);
+    list.push_back(21);
+
+    cout << "Regular list: ";
+    list.print();
+    cout << "Every other list: ";
+    list.every_other_element();
     
     return 0;
 }
