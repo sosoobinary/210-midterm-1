@@ -1,26 +1,29 @@
-#include <iostream>
+// COMSC 210 | Midterm 1 | Quang Ngo
+// IDE used: Visual Studio Code
+#include <iostream> // library for cin and cout
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+// Constants used in the demo
 
 class DoublyLinkedList {
 private:
     struct Node {
-        int data;
-        Node* prev;
-        Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
+        int data;       // value contained in node
+        Node* prev;     // pointer reference to the previous node
+        Node* next;     // pointer reference to the next node
+        Node(int val, Node* p = nullptr, Node* n = nullptr) {   // Constructor with default values for prev and next, val must be given
             data = val; 
             prev = p;
             next = n;
         }
     };
 
-    Node* head;
-    Node* tail;
+    Node* head; // pointer to first node
+    Node* tail; // pointer to last node
 
 public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+    DoublyLinkedList() { head = nullptr; tail = nullptr; }  // empty list created
 
     void insert_after(int value, int position) {
         if (position < 0) {
