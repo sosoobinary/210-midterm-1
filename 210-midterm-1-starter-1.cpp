@@ -56,41 +56,41 @@ public:
         temp->next = newNode;   // temp next is set to newNode
     }
 
-    void delete_val(int value) {
-        if (!head) return;
+    void delete_val(int value) {    // deletes node with a given (int) value
+        if (!head) return;  // checks for empty list. if so, function is cancelled
 
-        Node* temp = head;
+        Node* temp = head;  // temp value set to head to navigate to position
         
-        while (temp && temp->data != value)
+        while (temp && temp->data != value) // iterates through list, checking for given value
             temp = temp->next;
 
-        if (!temp) return; 
+        if (!temp) return; // runs when value is not found within list, closes function
 
-        if (temp->prev)
-            temp->prev->next = temp->next;
+        if (temp->prev) // checks for head node
+            temp->prev->next = temp->next; // used to bypass temp with prev node
         else
-            head = temp->next; 
+            head = temp->next; // set head if head is being deleted
 
-        if (temp->next)
-            temp->next->prev = temp->prev;
+        if (temp->next) // checks for tail node
+            temp->next->prev = temp->prev;  // used to bypass temp with next node
         else
-            tail = temp->prev; 
+            tail = temp->prev; // set tail if tail is being deleted
 
-        delete temp;
+        delete temp;    // memory clear
     }
 
-    void delete_pos(int pos) {
-        if (!head) {
+    void delete_pos(int pos) {  // deletes node with a given (int) position
+        if (!head) {    // checks for empty list. if so, displays error and function is cancelled
             cout << "List is empty." << endl;
             return;
         }
     
-        if (pos == 1) {
+        if (pos == 1) { // if deleting first node, use function pop_front() for simplicity
             pop_front();
             return;
         }
     
-        Node* temp = head;
+        Node* temp = head;  // temp value set to head to navigate to position
     
         for (int i = 1; i < pos; i++){
             if (!temp) {
