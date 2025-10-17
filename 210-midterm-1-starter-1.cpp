@@ -146,15 +146,15 @@ public:
             return;
         }
 
-        Node * temp = head;
+        Node * temp = head; // temp set to head as dummy
 
-        if (head->next) {
-            head = head->next;
-            head->prev = nullptr;
+        if (head->next) {   // checks if list has more than one node, else assumes one node
+            head = head->next;  // set second node as head
+            head->prev = nullptr;   // head prev set to null
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr;  // head and tail are set to null due to no remaining nodes after deletion
+        delete temp;    // memory clear
     }
 
     void pop_back() {   // deletes tail node from list
@@ -164,13 +164,13 @@ public:
         }
         Node * temp = tail;
 
-        if (tail->prev) {
-            tail = tail->prev;
-            tail->next = nullptr;
+        if (tail->prev) {   // checks if list has more than one node, else assumes one node
+            tail = tail->prev;  // set second to last node as tail
+            tail->next = nullptr;   // tail next set to null
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr;  // head and tail are set to null due to no remaining nodes after deletion
+        delete temp;    // memory clear
     }
 
     ~DoublyLinkedList() {   // deconstructor: deletes all nodes
@@ -202,6 +202,17 @@ public:
         while (current) {   // iterates through list
             cout << current->data << " ";   // print node
             current = current->prev;
+        }
+        cout << endl;
+    }
+
+    void every_other_element() {
+        Node* current = head;
+        bool other = false;
+
+        while(current) {
+            current = current->next;
+            other = !other;
         }
         cout << endl;
     }
